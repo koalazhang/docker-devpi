@@ -1,5 +1,8 @@
 #!/bin/bash
 
+: ${REPLICA_MAX_RETRIES:=40}
+: ${REQUEST_TIMEOUT:=30}
+
 function defaults {
     : ${DEVPI_SERVERDIR="/data/server"}
     : ${DEVPI_CLIENTDIR="/data/client"}
@@ -30,7 +33,7 @@ if [ "$1" = 'devpi' ]; then
     fi
 
     echo "[RUN]: Launching devpi-server"
-    exec devpi-server --restrict-modify root --host 0.0.0.0 --port 3141
+    exec devpi-server --restrict-modify root --host 0.0.0.0 --port 3141 --replica-max-retries $REPLICA_MAX_RETRIES --request-timeout $REQUEST_TIMEOUT
 fi
 
 echo "[RUN]: Builtin command not provided [devpi]"
