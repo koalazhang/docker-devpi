@@ -14,10 +14,6 @@ ENV PIP_INDEX_URL="https://pypi.python.org/simple"
 ENV PIP_TRUSTED_HOST="127.0.0.1"
 ENV VIRTUAL_ENV /env
 
-# devpi user
-RUN addgroup --system --gid 1000 devpi \
-    && adduser --disabled-password --system --uid 1000 --home /data --shell /sbin/nologin --gid 1000 devpi
-
 # create a virtual env in $VIRTUAL_ENV, ensure it respects pip version
 RUN pip install virtualenv \
     && virtualenv $VIRTUAL_ENV \
