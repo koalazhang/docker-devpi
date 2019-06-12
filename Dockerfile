@@ -3,7 +3,7 @@ FROM python:3.6.5
 LABEL maintainer="https://github.com/muccg/"
 
 ARG ARG_DEVPI_SERVER_VERSION=4.8.1
-ARG ARG_DEVPI_WEB_VERSION=3.4.1
+ARG ARG_DEVPI_WEB_VERSION=3.5.0
 ARG ARG_DEVPI_CLIENT_VERSION=4.3.0
 
 ENV DEVPI_SERVER_VERSION $ARG_DEVPI_SERVER_VERSION
@@ -31,7 +31,6 @@ VOLUME /data
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
-USER devpi
 ENV HOME /data
 WORKDIR /data
 
