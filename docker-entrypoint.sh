@@ -2,6 +2,8 @@
 
 : ${REPLICA_MAX_RETRIES:=40}
 : ${REQUEST_TIMEOUT:=30}
+: ${THREADS:=200}
+: ${KEYFS_CACHE_SIZE:=100000}
 
 function defaults {
     : ${DEVPI_SERVERDIR="/data/server"}
@@ -33,7 +35,9 @@ if [ "$1" = 'devpi' ]; then
     fi
 
     echo "[RUN]: Launching devpi-server"
-    exec devpi-server --restrict-modify root --host 0.0.0.0 --port 3141 --replica-max-retries $REPLICA_MAX_RETRIES --request-timeout $REQUEST_TIMEOUT
+    exec devpi-server --restrict-modify root --host 0.0.0.0 --port 3141 \
+        --replica-max-retries $REPLICA_MAX_RETRIES --request-timeout $REQUEST_TIMEOUT \
+        --threads $THREADS --keyfs-cache-size $KEYFS_CACHE_SIZE
 fi
 
 echo "[RUN]: Builtin command not provided [devpi]"
