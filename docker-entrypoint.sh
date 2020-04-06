@@ -4,6 +4,7 @@
 : ${REQUEST_TIMEOUT:=30}
 : ${THREADS:=200}
 : ${KEYFS_CACHE_SIZE:=100000}
+: ${MIRROR_URL:="https://pypi.python.org/simple/"}
 
 function defaults {
     : ${DEVPI_SERVERDIR="/data/server"}
@@ -22,7 +23,7 @@ function initialise_devpi {
     devpi use http://localhost:3141
     devpi login root --password=''
     devpi user -m root password="${DEVPI_PASSWORD}"
-    devpi index -y -c public pypi_whitelist='*' mirror_url="https://pypi.tuna.tsinghua.edu.cn/simple/"
+    devpi index -y -c public pypi_whitelist='*' mirror_url="${MIRROR_URL}"
     devpi-server --stop
     devpi-server --status
 }
