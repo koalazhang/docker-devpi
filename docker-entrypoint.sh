@@ -23,7 +23,8 @@ function initialise_devpi {
     devpi use http://localhost:3141
     devpi login root --password=''
     devpi user -m root password="${DEVPI_PASSWORD}"
-    devpi index -y -c public pypi_whitelist='*' mirror_url="${MIRROR_URL}"
+    devpi index -y -c public pypi_whitelist='*'
+    devpi index root/pypi mirror_url="${MIRROR_URL}"
     devpi-server --stop
     devpi-server --status
 }
