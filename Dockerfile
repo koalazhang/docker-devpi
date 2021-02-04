@@ -1,5 +1,5 @@
 #
-FROM python:3.6.5
+FROM python@sha256:c49ab7d5121521de57653c7209e68102d057ed77aff9859e8a9603b36105911a
 LABEL maintainer="https://github.com/muccg/"
 
 ARG ARG_DEVPI_SERVER_VERSION=5.5.0
